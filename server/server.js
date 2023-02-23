@@ -1,6 +1,6 @@
 const express=require("express");
 const mongoose=require("mongoose");
-const cors=require("cors");
+const cors=require("cors");  // It allows us to relax the security applied to an API. 
 const expressAsyncHandler=require("express-async-handler");
 const corsOpts = {
     origin: '*',
@@ -23,6 +23,7 @@ const corsOpts = {
 
 
 mongoose.connect( "mongodb+srv://notes-database:divyang@cluster0.nvr0e.mongodb.net/notes", { useNewUrlParser: true });
+
 
 const noteSchema=new mongoose.Schema({
 
@@ -76,12 +77,11 @@ app.get("/get",expressAsyncHandler(async(req,res)=>{
 }))
 
 
-let port = process.env.PORT;
-if (port === null || port === "") {
-  port = 5000;
-}
-app.listen(port);
+let port=5000;
+
+//app.listen(port);
 
 app.listen(port,function(){
     console.log("started");
+    console.log(port);
 });

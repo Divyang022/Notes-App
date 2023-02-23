@@ -5,11 +5,13 @@ import Note from './Note';
 import CreateNote from './CreateNote';
 import axios from 'axios';
 
+const backend_url=process.env.REACT_APP_BACKEND_URL;
+
 function App(){
 
   const[notes,setNotes]=useState([]);
   useEffect(()=>{                                                     //useEffect runs on every render. That means that when the count changes, a render happens, which then triggers another effect
-    axios.get("http://localhost:5000/get").then(resp => {
+    axios.get(`${backend_url}/get`).then(resp => {
     setNotes(resp.data);
     
 })});

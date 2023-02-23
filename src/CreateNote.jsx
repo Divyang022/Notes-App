@@ -1,6 +1,8 @@
 import React,{useState} from "react";
 import axios from "axios";
 
+const backend_url=process.env.REACT_APP_BACKEND_URL;
+
 function CreateNote(props){
 
    const[note,setNote]=useState({
@@ -10,7 +12,8 @@ function CreateNote(props){
    
    function handleChange(event){
 
-    const{name,value}=event.target;
+    const{name,value}=event.target;  //The target event property returns the element that triggered the event.
+                                     //This method is called destructuring
 
     setNote(prevNote => {
         return {
@@ -27,7 +30,7 @@ function CreateNote(props){
      const title=note.title;
      const content=note.content;
       
-      axios.post("http://localhost:5000/api",{title,content});
+      axios.post(`${backend_url}/api`,{title,content});
      
      
      setNote({
@@ -37,7 +40,7 @@ function CreateNote(props){
    }
    function deleteAll(){
 
-    axios.delete("http://localhost:5000/DeleteAll");
+    axios.delete(`${backend_url}/deleteAll`);
     window.location.reload(); 
    }
     return (

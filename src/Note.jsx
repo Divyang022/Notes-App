@@ -1,13 +1,14 @@
 import axios from "axios";
 import React from "react";
 
+const backend_url=process.env.REACT_APP_BACKEND_URL;
 
 
 function Note(props){
     
     function handledelete()
     {       
-        axios.delete("http://localhost:5000/apiDelete",{data:{title:props.title,content:props.content}});
+        axios.delete(`${backend_url}/apidelete`,{data:{title:props.title,content:props.content}});
         window.location.reload(); 
        
     }
